@@ -3,13 +3,17 @@ package com.zenika.decathlon.coding.school.twitter;
 import org.kohsuke.args4j.Argument;
 
 public class Follow implements Command {
-	@Argument String user1;
-	@Argument String user2;
+	@Argument String loginFollower;
+	@Argument String loginFollowed;
 
 	@Override
-	public void perform(Main main) {
-		// TODO Auto-generated method stub
-		
+	public void perform(Store store) {
+
+        User userFollower = store.getOrCreateUser(loginFollower);
+        User userFollowed = store.getOrCreateUser(loginFollowed);
+
+        userFollower.usersFollowed.add(userFollowed);
+
 	}
 
 }

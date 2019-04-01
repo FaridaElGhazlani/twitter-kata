@@ -2,13 +2,21 @@ package com.zenika.decathlon.coding.school.twitter;
 
 import org.kohsuke.args4j.Argument;
 
-public class Read implements Command {
-	@Argument String user;
+import java.util.List;
 
-	@Override
-	public void perform(Main main) {
-		// TODO Auto-generated method stub
-		
-	}
+public class Read implements Command {
+    @Argument
+    String login;
+
+    @Override
+    public void perform(Store store) {
+
+        User user = store.getOrCreateUser(login);
+        List<Message> messageList = user.messageList;
+
+        for (Message message : messageList) {
+            System.out.println(user.login + " - " + message.text);
+        }
+    }
 
 }

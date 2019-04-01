@@ -20,7 +20,7 @@ public class Main {
         @SubCommand(name="post", impl=Post.class),
         @SubCommand(name="read", impl=Read.class),
         @SubCommand(name="follow", impl=Follow.class),
-        @SubCommand(name="unfollows", impl=Unfollow.class)
+        @SubCommand(name="unfollows", impl=UnFollow.class)
     })
     Command command;
 
@@ -31,8 +31,8 @@ public class Main {
 				throw new CmdLineException("you should give at least one command-line argument !");
 			// parse the arguments.
 			parser.parseArgument(args);
-
-			command.perform(this);
+            Store store = new Store();
+			command.perform(store);
 		} catch (CmdLineException e) {
 			// if there's a problem in the command line,
 			// you'll get this exception. this will report
